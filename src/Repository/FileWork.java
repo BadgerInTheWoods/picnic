@@ -3,6 +3,7 @@ package Repository;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FileWork {
     public static final String filename = "input.txt";
@@ -43,25 +44,18 @@ public class FileWork {
     }
 
     public ArrayList<String> readAll() {
-        ArrayList<String> lines = new ArrayList<>();
+        ArrayList<String> arr = null;
         try {
             File file = new File(filename);
             FileReader fr = new FileReader(file);
             BufferedReader reader = new BufferedReader(fr);
             String line = reader.readLine();
-            if (line != null) {
-                lines.add(line);
-            }
-            while (line != null) {
-                line = reader.readLine();
-                if (line != null) {
-                    lines.add(line);
-                }
-            }
+            line = line.replaceAll("\\s+", " ");
+            arr = new ArrayList<>(List.of(line.split(" ")));
             fr.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return lines;
+        return arr;
     }
 }
