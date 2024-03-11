@@ -11,8 +11,8 @@ public class FileWork {
     public void addAll(ArrayList<String> food) {
         try (FileWriter writer = new FileWriter(filename, true)) {
             for (String line : food) {
+                writer.append(' ');
                 writer.write(line);
-                writer.append('\n');
             }
             writer.close();
             writer.flush();
